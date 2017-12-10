@@ -5,7 +5,7 @@ Add custom left right edge swipe custom transition for present/dismiss & push/po
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-![](header.png)
+![](header.gif)
 
 ## Features
 
@@ -35,40 +35,40 @@ extension ViewController: SwipeAnimatorDelegate {
 }
 
 override func viewDidLoad() {
-        super.viewDidLoad()
+     super.viewDidLoad()
         
-        self.transitioningDelegate = SwipeTransitionController.shared
-        interactiveRLSwipeContoller = SwipeInteractionController(viewController: self,
+     self.transitioningDelegate = SwipeTransitionController.shared
+     interactiveRLSwipeContoller = SwipeInteractionController(viewController: self,
                                                                  isFromRightEdge: true,
                                                                  beganFunc: self.presentRightViewController)
-        interactiveLRSwipeContoller = SwipeInteractionController(viewController: self,
+     interactiveLRSwipeContoller = SwipeInteractionController(viewController: self,
                                                                  isFromRightEdge: false,
                                                                  beganFunc: self.presentLeftViewController)
 }
 
 func presentLeftViewController() {
-        self.leftSwipeConfig()
-        self.performSegue(withIdentifier: "LeftPush", sender: nil)
+     self.leftSwipeConfig()
+     self.performSegue(withIdentifier: "LeftPush", sender: nil)
 }
     
 func presentRightViewController() {
-        self.rightSwipeConfig()
-        self.performSegue(withIdentifier: "RightPush", sender: nil)
+     self.rightSwipeConfig()
+     self.performSegue(withIdentifier: "RightPush", sender: nil)
 }
 
 // MARK: - Helpers
 
 private func leftSwipeConfig() {
-        swipeAnimatorController = SwipeAnimator()
-        swipeAnimatorController?.isFromRightToLeft = false
-        swipeAnimatorController?.transitionStyle = .plain
-        swipeAnimatorController?.interactionController = interactiveLRSwipeContoller
+     swipeAnimatorController = SwipeAnimator()
+     swipeAnimatorController?.isFromRightToLeft = false
+     swipeAnimatorController?.transitionStyle = .plain
+     swipeAnimatorController?.interactionController = interactiveLRSwipeContoller
 }
     
-    private func rightSwipeConfig() {
-        swipeAnimatorController = SwipeAnimator()
-        swipeAnimatorController?.isFromRightToLeft = true
-        swipeAnimatorController?.interactionController = interactiveRLSwipeContoller
+private func rightSwipeConfig() {
+    swipeAnimatorController = SwipeAnimator()
+    swipeAnimatorController?.isFromRightToLeft = true
+    swipeAnimatorController?.interactionController = interactiveRLSwipeContoller
 }
 
 ```
